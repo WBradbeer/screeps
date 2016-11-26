@@ -6,9 +6,6 @@ var countRole = require('count.role')
 
 module.exports.loop = function () {
 
-    var tower = Game.getObjectById('TOWER_ID');
-    structTower.run(tower);
-
         for(var name in Memory.creeps) {
         if(!Game.creeps[name]) {
             delete Memory.creeps[name];
