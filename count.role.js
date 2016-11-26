@@ -5,7 +5,7 @@ var countRole = {
         'upgrader': [WORK, WORK, WORK, CARRY, CARRY, MOVE],
         'repairer': [WORK, WORK, WORK, CARRY, MOVE],
         'defender': [Attack, Attack, MOVE]
-    }
+    },
 
     run: function(data) {
         for(var role in data) {
@@ -13,7 +13,7 @@ var countRole = {
             console.log(role + 's: ' + inRole.length);
             
             if(inRole.length < data[role]) {
-                var newName = Game.spawns['Spawn1'].createCreep(self.creepParts[role], undefined, {'role': role});
+                var newName = Game.spawns['Spawn1'].createCreep(this.creepParts[role], undefined, {'role': role});
                 console.log('Spawning new ' + role + ': ' + newName);
             }
             if(role == 'harvester' && inRole.length == 0) {
