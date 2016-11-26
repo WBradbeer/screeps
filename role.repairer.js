@@ -1,4 +1,4 @@
-var roleBuilder = {
+var roleRepairer = {
     /** @param {Creep} creep **/
     run: function(creep) {
         function findWalls(creep) {
