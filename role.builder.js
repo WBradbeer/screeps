@@ -1,16 +1,14 @@
 var roleBuilder = {
-    function findWalls(creep) {
-        var returnedWalls = creep.room.find(FIND_STRUCTURES, {
-           filter => (structure) {
-               return structure.structureType === STRUCTURE_WALL || STRUCTURE_RAMPART;
-           }
-        });
-        return returnedWalls;
-    }
-
     /** @param {Creep} creep **/
     run: function(creep) {
-
+        function findWalls(creep) {
+            var returnedWalls = creep.room.find(FIND_STRUCTURES, {
+               filter: (structure) => {
+                   return structure.structureType === STRUCTURE_WALL || STRUCTURE_RAMPART;
+               }
+            });
+            return returnedWalls;
+        }
         if(creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
             creep.say('harvesting');
