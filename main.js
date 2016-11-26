@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer')
+var roleDefender = require('role.defender')
 var structTower = require('struct.tower');
 var countRole = require('count.role');
 
@@ -19,7 +20,8 @@ module.exports.loop = function () {
         'harvester': 3,
         'builder': 2,
         'upgrader': 3,
-        'repairer': 1
+        'repairer': 1,
+        'defender': 5
     }
     countRole.run(roles)
     
@@ -36,6 +38,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'repairer') {
             roleRepairer.run(creep)
+        }
+        if(creep.memory.role == 'defender') {
+            roleDefender.run(creep)
         }
     }
 }
