@@ -31,17 +31,17 @@ var roleBuilder = {
             var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             var walls = findWalls(creep);
             var damaged = findDamaged(creep);
-            if(targets.length) {
-                if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0]);
-                }
-             } else if(walls.length) {
-                if(creep.repair(walls[0]) == ERR_NOT_IN_RANGE) {
+            if(walls.length) {
+                if(creep.build(walls[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(walls[0]);
                 }
-            } else if(damaged.length) {
+             } else if(damaged.length) {
                 if(creep.repair(damaged[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(damaged[0]);
+                }
+            } else if(targets.length) {
+                if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0]);
                 }
             }
 
@@ -55,4 +55,4 @@ var roleBuilder = {
     }
 };
 
-module.exports = roleBuilder;
+module.exports = roleRepairer;
