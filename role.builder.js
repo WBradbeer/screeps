@@ -1,4 +1,12 @@
 var roleBuilder = {
+    function findWalls(creep) {
+        var returnedWalls = creep.room.find(FIND_STRUCTURES, {
+           filter => (structure) {
+               return structure.structureType === STRUCTURE_WALL || STRUCTURE_RAMPART;
+           }
+        });
+        return returnedWalls;
+    }
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -19,6 +27,13 @@ var roleBuilder = {
                     creep.moveTo(targets[0]);
                 }
             }
+            var walls = findWalls(creep)
+            if(walls.length) {
+                if(creep.repair(walls[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(walls[0]);
+                }
+            }
+
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
