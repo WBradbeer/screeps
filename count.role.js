@@ -13,7 +13,7 @@ var countRole = {
             var all = _.filter(Game.creeps, (creep) => true);
             console.log(role + 's: ' + inRole.length);
             
-            if(inRole.length / all.length < data[role]) {
+            if(inRole.length / all.length - 0.1 < data[role]) {
                 var newName = Game.spawns['Spawn1'].createCreep(this.creepParts[role], undefined, {'role': role});
                 console.log('Spawning new ' + role + ': ' + newName);
             }
