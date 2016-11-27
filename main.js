@@ -17,11 +17,11 @@ module.exports.loop = function () {
     }
 
     roles = {
-        'harvester': 3,
-        'builder': 2,
-        'upgrader': 3,
-        'repairer': 1,
-        'defender': 5
+        'harvester': 0.3,
+        'builder': 0.2,
+        'upgrader': 0.3,
+        'repairer': 0.1,
+        'defender': 0.1
     }
     countRole.run(roles)
     

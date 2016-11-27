@@ -4,8 +4,8 @@ var roleBuilder = {
         function findWalls(creep) {
             var returnedWalls = creep.room.find(FIND_STRUCTURES, {
                filter: (structure) => {
-                   return structure.structureType === STRUCTURE_WALL || STRUCTURE_RAMPART &&
-                   structure.hits < 10000;
+                   return structure.structureType === (STRUCTURE_WALL || STRUCTURE_RAMPART) &&
+                   structure.hits < 50000;
                }
             });
             return returnedWalls;   

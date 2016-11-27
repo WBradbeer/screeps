@@ -1,18 +1,19 @@
 var countRole = {
     creepParts: {
-        'harvester': [WORK, WORK, WORK, CARRY, MOVE],
+        'harvester': [WORK, WORK, CARRY, MOVE, MOVE],
         'builder': [WORK, WORK, WORK, CARRY, MOVE],
-        'upgrader': [WORK, WORK, WORK, CARRY, CARRY, MOVE],
-        'repairer': [WORK, WORK, WORK, CARRY, MOVE],
-        'defender': [Attack, Attack, MOVE]
+        'upgrader': [WORK, WORK, CARRY, CARRY, CARRY, MOVE],
+        'repairer': [WORK, WORK, CARRY, CARRY, MOVE, MOVE],
+        'defender': [RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, MOVE, MOVE]
     },
 
     run: function(data) {
         for(var role in data) {
             var inRole = _.filter(Game.creeps, (creep) => creep.memory.role == role);
+            var all = _.filter(Game.creeps, (creep) => true);
             console.log(role + 's: ' + inRole.length);
             
-            if(inRole.length < data[role]) {
+            if(inRole.length / all.length < data[role]) {
                 var newName = Game.spawns['Spawn1'].createCreep(this.creepParts[role], undefined, {'role': role});
                 console.log('Spawning new ' + role + ': ' + newName);
             }
