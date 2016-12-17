@@ -1,4 +1,5 @@
 var roleHarvester = require('role.harvester');
+var roleTransporter = require('role.transporter');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer')
@@ -17,11 +18,12 @@ module.exports.loop = function () {
     }
 
     roles = {
-        'harvester': 0.6,
-        'builder': 0.1,
+        'harvester': 0.2,
+        'builder': 0.3,
         'upgrader': 0.2,
         'repairer': 0.1,
-        'defender': 0.0
+        'defender': 0.0,
+        'transporter': 0.2
     };
     countRole.run(roles)
     
@@ -41,6 +43,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'defender') {
             roleDefender.run(creep)
+        }
+        if(creep.memory.role == 'transporter') {
+            roleTransporter.run(creep)
         }
     }
 }

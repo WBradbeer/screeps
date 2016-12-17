@@ -50,7 +50,18 @@ var roleRepairer = {
         }
         else {
             var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            var stores = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER &&
+                        structure.store.energy > 0);
+                    }
+            });
+            if(stores.length){
+                if(creep.withdraw(stores[0], "energy") == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(stores[0]);
+                }
+                
+            } else if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0]);
             }
         }
