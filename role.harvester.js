@@ -6,7 +6,7 @@ var roleHarvester = {
             var sources = creep.room.find(FIND_SOURCES);
             var energy = creep.pos.findInRange(
                 FIND_DROPPED_ENERGY,
-                10
+                100
             );
 
             if (energy.length) {
@@ -30,7 +30,7 @@ var roleHarvester = {
             var stores = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER && 
-                                structure.store < structure.storeCapacity);
+                                structure.store.energy < structure.storeCapacity);
                     }
             });
             if(targets.length > 0) {
