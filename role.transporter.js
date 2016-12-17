@@ -1,4 +1,4 @@
-var roleHarvester = {
+var roleTransporter = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -8,8 +8,22 @@ var roleHarvester = {
                 FIND_DROPPED_ENERGY,
                 100
             );
-
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            var stores = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER && 
+                                structure.store.energy < structure.storeCapacity);
+                    }
+            });
+            if (energy.length) {
+                console.log('found ' + energy[0].energy + ' energy at ', energy[0].pos);
+                if (creep.pickup(energy[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(energy[0])
+                }
+            } else if(stores.length){
+                if(creep.withdraw(stores[0], "energy") == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(stores[0]);
+                } 
+            } else if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(sources[0]);
                 }
         }
@@ -22,17 +36,7 @@ var roleHarvester = {
                                 ) && structure.energy < structure.energyCapacity);
                     }
             });
-            var stores = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_CONTAINER && 
-                                structure.store.energy < structure.storeCapacity);
-                    }
-            });
-            if(stores.length > 0) {
-                if(creep.transfer(stores[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(stores[0]);
-                }
-            } else if(targets.length > 0) {
+            if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0]);
                 }
@@ -41,4 +45,4 @@ var roleHarvester = {
     }
 };
 
-module.exports = roleHarvester;
+module.exports = roleTransporter;

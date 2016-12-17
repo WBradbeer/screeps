@@ -22,7 +22,7 @@ module.exports.loop = function () {
         'upgrader': 0.2,
         'repairer': 0.1,
         'defender': 0.0
-    }
+    };
     countRole.run(roles)
     
     for(var name in Game.creeps) {

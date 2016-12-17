@@ -1,6 +1,7 @@
 var countRole = {
     creepParts: {
         'harvester': [WORK, WORK, WORK, CARRY,  MOVE],
+        'transporter': [CARRY, CARRY, MOVE, Move],
         'builder': [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
         'upgrader': [WORK, WORK, WORK, CARRY, MOVE],
         'repairer': [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE],
