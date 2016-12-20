@@ -26,7 +26,7 @@ module.exports.loop = function () {
         'defender': 0.0,
         'transporter': 0.2
     };
-    countRole.run(roles)
+    countRole.run('Spawn1', roles)
     
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
