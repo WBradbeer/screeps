@@ -6,6 +6,7 @@ var roleRepairer = require('role.repairer')
 var roleDefender = require('role.defender')
 var structTower = require('struct.tower');
 var countRole = require('count.role');
+var structTower = require('struct.tower');
 
 
 module.exports.loop = function () {
@@ -19,9 +20,9 @@ module.exports.loop = function () {
 
     roles = {
         'harvester': 0.2,
-        'builder': 0.3,
-        'upgrader': 0.2,
-        'repairer': 0.1,
+        'builder': 0.2,
+        'upgrader': 0.4,
+        'repairer': 0.0,
         'defender': 0.0,
         'transporter': 0.2
     };
@@ -48,5 +49,8 @@ module.exports.loop = function () {
             roleTransporter.run(creep)
         }
     }
+    var tower = Game.getObjectById('58568f583538b7e5474fbb03');
+    structTower.run(tower)
+    
 }
 

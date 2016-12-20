@@ -2,7 +2,15 @@ var roleTransporter = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        if(creep.carry.energy < creep.carryCapacity) {
+        if(creep.memory.transporting && creep.carry.energy == 0) {
+            creep.memory.transporting = false;
+            creep.say('harvesting');
+        }
+        else if(!creep.memory.transporting && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.transporting = true;
+            creep.say('transporting');
+        } 
+        if(!creep.memory.transporting) {
             var sources = creep.room.find(FIND_SOURCES);
             var energy = creep.pos.findInRange(
                 FIND_DROPPED_ENERGY,
@@ -11,7 +19,7 @@ var roleTransporter = {
             var stores = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER && 
-                                structure.store.energy < structure.storeCapacity);
+                                structure.store.energy > 0);
                     }
             });
             if (energy.length) {

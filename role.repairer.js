@@ -13,7 +13,8 @@ var roleRepairer = {
         function findDamaged(creep) {
             var damaged = creep.room.find(FIND_STRUCTURES, {
                filter: (structure) => {
-                   return structure.hits != structure.hitsMax;
+                   return structure.hits < 0.8*structure.hitsMax &&
+                   structure.structureType != STRUCTURE_WALL;
                }
             });
             return damaged;   
@@ -36,9 +37,7 @@ var roleRepairer = {
                     creep.moveTo(damaged[0]);
                 }
             } else if(walls.length) {
-                console.log('W')
                 if(creep.build(walls[0]) == ERR_NOT_IN_RANGE) {
-                    console.log('e')
                     creep.moveTo(walls[0]);
                 }
             } else if(targets.length) {
